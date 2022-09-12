@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: webelight-app:0.1
+      image: 220897588425.dkr.ecr.eu-west-1.amazonaws.com/webelight-app:0.1
     container_name: webelight-app
     ports:
       - 49160:5000
