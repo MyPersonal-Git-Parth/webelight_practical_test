@@ -1,0 +1,33 @@
+version: '2'
+services:
+  mongodb:
+#    build:
+#      context: .
+#      dockerfile: ./mongodb.Dockerfile
+    image: mongo
+    container_name: mongodb
+    volumes:
+    - './mongo-data:/data/db'
+    networks:
+      - my-app
+  redisdb:
+    image: redis
+    container_name: redisdb
+    volumes:
+    - './redis-data:/data'
+    networks:
+      - my-app    
+  webelight-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: webelight-app:0.1
+    container_name: webelight-app
+    ports:
+      - 49160:5000
+    networks:
+      - my-app
+networks:
+    my-app:
+      driver: bridge
+#      external: true
